@@ -1,0 +1,37 @@
+{
+  "name": "spotifyPlaylistGenerator",
+  "version": "1.0.0",
+  "description": "By accessing unique keys in the object model Spotify users will be able to curate playlists.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themartinsjoseph/spotifyPlaylistGenerator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/themartinsjoseph/spotifyPlaylistGenerator/issues"
+  },
+  "homepage": "https://github.com/themartinsjoseph/spotifyPlaylistGenerator#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "express-ejs-layouts": "^2.2.0",
+    "express-session": "^1.15.1",
+    "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-spotify": "^0.3.1",
+    "pg": "^6.1.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.2",
+    "spotify": "^0.3.0"
+  }
+}
