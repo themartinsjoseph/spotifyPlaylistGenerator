@@ -1,0 +1,17 @@
+{
+  "development": {
+    "database": "spotifyApp",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "database": "spotifyApp",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "database": "spotifyApp",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
