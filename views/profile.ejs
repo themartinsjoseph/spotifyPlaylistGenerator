@@ -1,9 +1,32 @@
-<h1>Profile</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h1>Prince Horoscope</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h1>Hello, <%= users.firstName %>!</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h3><%= horoApi.horoscope %></h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<iframe src="https://embed.spotify.com/?uri=spotify:track:0bNPzbyaT9npwhIP8d2Rsi" frameborder="0" allowtransparency="true"></iframe>
+		</div>
+	</div>
 
-<h1>Hello, <%= users.firstName %>!</h1>
 
-<h1>BIRTHDAY:<%= users.birthDay %></h1>
-<h1>BIRTHMONTH<%= users.birthMonth %></h1>
 
-<%= horoApi.horoscope %>
-<%= horoApi.meta.intensity %>
+
+
+</div>
+
+
+
+
+
