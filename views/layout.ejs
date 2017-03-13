@@ -4,24 +4,27 @@
 	<title>My Auth App</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<link href='/still_time/still_time.tff' rel='stylesheet' type='text/css'>
+	<link href='/fonts/still_time/still_time.tff' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<div class='container'></div>
 	<div class='row'>
-			<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
-				<a href='/' class='btn btn-primary'>Home</a>
-				<a href='auth/login' class='btn btn-primary'>Login</a>
-				<a href='auth/signup' class='btn btn-success'>Sign Up</a>
-				<a href='auth/logout' class='btn btn-warning'>Logout</a>
+			<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center'>
+				<a href='/' class='btn btn-default'>Home</a>
+				<a href='auth/login' class='btn btn-default'>Login</a>
+				<a href='auth/signup' class='btn btn-default'>Sign Up</a>
+				<a href='auth/logout' class='btn btn-default'>Logout</a>
 				<a href='/profile' class='btn btn-default'>Profile</a>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<!-- <% include partials/alerts %>%> -->
+			<% include partials/alerts %>%> 
 			<%-body%>
-			<!-- <strong>User Object</strong><%- JSON.stringify(currentUser) %> -->
+			<br>
+			<br>
+			<br>
+			<!-- <strong>User Object</strong><%- JSON.stringify(currentUser) %> --> 
 			</div>
 		</div>
 

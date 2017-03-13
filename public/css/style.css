@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'stillTime';
-    src: url('still_time.ttf') format('truetype'),
-         
+    font-family: StillTime;
+    src: url('./fonts/still-time/stilltime.ttf') format('truetype'),      
 }
 
 body {
   background-color: #622f75;
+  color: #ffffff;
 }
 
 h3  {
@@ -19,20 +19,24 @@ h2  {
 
 h1 {
   color: #ffffff;
+  font-family: StillTime, sans-serif; 
 }
 
+.btn-default {
+  color: #622f75;
+}
 
-  #login {
-    display: none;
-  }
+#login {
+  display: none;
+}
 
-  #loggedin {
-    display: none;
-  }
+#loggedin {
+  display: none;
+}
 
-  .text-overflow {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 500px;
-      }
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 500px;
+}

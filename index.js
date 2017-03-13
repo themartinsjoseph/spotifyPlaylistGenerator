@@ -36,7 +36,7 @@ var spotifyApi = new SpotifyWebApi({
 
 //Set & Use Statements
 app.set('view engine', 'ejs'); 
-spotifyApi.setAccessToken('BQCNPIUlNEmWpTXURbNjzjdHEd_5ecyjhEOVfLYQMzb6wFXjpl3aLueHTzec6Eno2XQp_qYhSSf2Y4N9YtHdlCBgtHUjfDkkVU6pbahxEbRdvm5oIw1oioufnf0B38Yd-a-Fip-atnFm');
+spotifyApi.setAccessToken('BQCSKJ_7BxVek_DLsUxD2eXdVt8EEq3DE69hCwGx2P6Ms8qft3c2_Q0HZ_uMAlb5kvDdO2J_t_yBd8CAdgCCu--39xUjASLIRrshiVHhDdZTJfwDIiwSP91bA0gAdEYADQoTfB1Lop--');
 app.use(require('morgan')('dev'));
 app.use(ejsLayouts);
 app.use(session({
