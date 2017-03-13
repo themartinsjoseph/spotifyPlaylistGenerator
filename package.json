@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "By accessing unique keys in the object model Spotify users will be able to curate playlists.",
   "engines": { 
-    "node": "7.4.0"
+    "node": "7.4.0",
+    "npm": "4.0.5"
     },
   "main": "index.js",
   "scripts": {
