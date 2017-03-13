@@ -1,6 +1,6 @@
 @font-face {
-    font-family: StillTime;
-    src: url('./fonts/still-time/stilltime.ttf') format('truetype'),      
+    font-family: 'StillTime';
+    src: url('/fonts/still-time/stilltime.ttf') format('truetype');      
 }
 
 body {
@@ -19,7 +19,8 @@ h2  {
 
 h1 {
   color: #ffffff;
-  font-family: StillTime, sans-serif; 
+  font-family: 'StillTime', sans-serif; 
+  font-size: 87px;
 }
 
 .btn-default {
