@@ -2,6 +2,9 @@
   "name": "spotifyPlaylistGenerator",
   "version": "1.0.0",
   "description": "By accessing unique keys in the object model Spotify users will be able to curate playlists.",
+  "engines": { 
+    "node": "7.4.0"
+    },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
