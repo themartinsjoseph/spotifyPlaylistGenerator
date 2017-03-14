@@ -36,7 +36,7 @@ var spotifyApi = new SpotifyWebApi({
 
 //Set & Use Statements
 app.set('view engine', 'ejs'); 
-spotifyApi.setAccessToken('BQCSKJ_7BxVek_DLsUxD2eXdVt8EEq3DE69hCwGx2P6Ms8qft3c2_Q0HZ_uMAlb5kvDdO2J_t_yBd8CAdgCCu--39xUjASLIRrshiVHhDdZTJfwDIiwSP91bA0gAdEYADQoTfB1Lop--');
+spotifyApi.setAccessToken('BQCPVTfcz70E-JNW5kxMWMrfPSfkpVW4ThKGCWf0TwdDyosGwL3YBvnFKsAg-2CSDmsFd3hSNLZoLC4_weNO3ZMEs90nf-53_MoPHA76BLN0A7wAGCjkrk0iio7MCAo8MkaFmsTisyEc');
 app.use(require('morgan')('dev'));
 app.use(ejsLayouts);
 app.use(session({
@@ -62,16 +62,14 @@ app.get('/', function(req, res) {
 
 //Get a horoscope
 app.get('/profile', isLoggedIn, function(req,res) {
- db.user.find().then(function(users){
- 	 var sign = horoscope.getSign({ month: users.birthMonth, day: users.birthDay});
+ db.user.findById(req.user.id).then(function(user){
+ 	 var sign = horoscope.getSign({ month: user.birthMonth, day: user.birthDay});
  	 var urlSign = sign.toLowerCase();
  	 var horoApiUrl = 'http://theastrologer-api.herokuapp.com/api/horoscope/' + urlSign +'/today';
-	 console.log(horoApiUrl);
 	request(horoApiUrl, function(error, response, body) {
 		if (!error && response.statusCode == 200) {
     		var horoApi = JSON.parse(body);
-    		console.log(horoApi);
-    		res.render("profile", {users: users, horoApi: horoApi});
+    		res.render("profile", {horoApi: horoApi});
 		} 
   	});
  }).catch(function(error){
@@ -79,66 +77,11 @@ app.get('/profile', isLoggedIn, function(req,res) {
  })
 });
 
-// Get a playlist
-spotifyApi.getPlaylist('12135695932', '0LugNdXIsKK8eNfPNyWo8s')
-  .then(function(data) {
-  	var trackObj = data.body.tracks.items;
-  	var trackIds = [];
-  	for (var i = 0; i < trackObj.length; i++){
-  		trackIds.push(trackObj[i].track.id);
-  	}
-	spotifyApi.getAudioFeaturesForTracks(trackIds)
-	  .then(function(data) {
-	  	var trackObj = data.body.audio_features;
-	  	for (var i = 0; i < trackObj.length; i++){
-	    valence[i] = trackObj[i].valence;
-	}
-	  }, function(err) {
-	    done(err);
-	  });
-			db.user.find().then(function(users){
-		 	 var sign = horoscope.getSign({ month: users.birthMonth, day: users.birthDay});
-		 	 var urlSign = sign.toLowerCase();
-		 	 var horoApiUrl = 'http://theastrologer-api.herokuapp.com/api/horoscope/' + urlSign +'/today';
-			request(horoApiUrl, function(error, response, body) {
-				if (!error && response.statusCode == 200) {
-		    		var horoApi = JSON.parse(body);
-		    		horoScore = horoApi.meta.intensity;
-		    		horoScore = horoScore.replace('%', '');
-		    		horoScore = horoScore.split('');
-		    		horoScore.unshift('0.')
-		    		horoScore = horoScore.toString();
-		    		horoScore = horoScore.replace(/,/g,"");
-				} 	
-						if (horoScore < 0.33) {
-							var sadRnd = superSad[Math.floor(Math.random()*superSad.length)];
-							console.log('<iframe src="https://embed.spotify.com/?uri=spotify:track:' + sadRnd + '"' + " " + 'frameborder="0" allowtransparency="true"></iframe>');
-							
-						} else if (horoScore > 0.33 && horoScore < 0.66) {
-							var mildRnd = mild[Math.floor(Math.random()*mild.length)];
-							console.log('<iframe src="https://embed.spotify.com/?uri=spotify:track:' + mildRnd + '"' + " " + 'frameborder="0" allowtransparency="true"></iframe>');
-							
-						} else if (horoScore > 0.66 && horoScore < 1) {
-							var happyRnd = superHappy[Math.floor(Math.random()*superHappy.length)];
-							console.log('<iframe src="https://embed.spotify.com/?uri=spotify:track:' + happyRnd + '"' + " " + 'frameborder="0" allowtransparency="true"></iframe>');
-							
-						} else {
-							console.log('oops');
-						}	
-		  	});
-		 }).catch(function(error){
-		 	res.status(404).send('Something is Wrong');
-		 })
-
-    // console.log('Some information about this playlist', data.body.tracks.items[0].track.id);
-  }, function(err) {
-    console.log('Something went wrong!', err);
-  });
-
 
 //Controllers
 app.use('/auth', require('./controllers/auth'));
 app.use('/randomSong', require('./controllers/randomSong'));
+app.use('/idGenerator', require('./controllers/idGenerator'));
 
 
 //Listener

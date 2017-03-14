@@ -6,7 +6,7 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<h2>Hello, <%= users.firstName %>!</h2>
+			<h2>Hello, <%= currentUser.firstName %>!</h2>
 		</div>
 	</div>
 	<div class="row">
@@ -16,15 +16,18 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<h2>Take it from here, Prince:</h2>
+			<h2>Now shut up, and listen:</h2>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<iframe src="https://embed.spotify.com/?uri=spotify:track:0bNPzbyaT9npwhIP8d2Rsi" frameborder="0" allowtransparency="true"></iframe>
+
+			
 		</div>
 	</div>
+	<strong>User Object</strong><%- JSON.stringify(currentUser) %> 
 </div>
 
 
