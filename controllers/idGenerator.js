@@ -29,76 +29,73 @@ var spotifyApi = new SpotifyWebApi({
 });
 
 //Set and Use Statements 
-spotifyApi.setAccessToken('BQCPVTfcz70E-JNW5kxMWMrfPSfkpVW4ThKGCWf0TwdDyosGwL3YBvnFKsAg-2CSDmsFd3hSNLZoLC4_weNO3ZMEs90nf-53_MoPHA76BLN0A7wAGCjkrk0iio7MCAo8MkaFmsTisyEc');
+spotifyApi.setAccessToken('BQAcO2bcv58IRnG1N4brHTYthdBOWhlhWoAe_VZyuWUHSx1O7AjkRzJhsjg0NfM5s8vnIvW-HHvGMI5fSrFkaijPjv6dFyPIZ8Pad8PhHYlOAh8pEiaCSYb8LxTMPlIfvBbukpWklx2C');
 
 //Routes
-spotifyApi.getPlaylist('12135695932', '0LugNdXIsKK8eNfPNyWo8s')
-  .then(function(data) {
-  	var trackObj = data.body.tracks.items;
-  	var trackIds = [];
-  	for (var i = 0; i < trackObj.length; i++){
-  		trackIds.push(trackObj[i].track.id);
-  	}
-	spotifyApi.getAudioFeaturesForTracks(trackIds)
+router.get('/spotifySong', function(req,res) {
+	spotifyApi.getPlaylist('12135695932', '0LugNdXIsKK8eNfPNyWo8s')
 	  .then(function(data) {
-	  	var trackObj = data.body.audio_features;
+	  	var url = '';
+	  	var trackObj = data.body.tracks.items;
+	  	var trackIds = [];
 	  	for (var i = 0; i < trackObj.length; i++){
-	    valence[i] = trackObj[i].valence;
-	}
-	  }, function(err) {
-	    done(err);
-	  });
-			db.user.findById(req.user.id).then(function(user){
-		 	 var sign = horoscope.getSign({ month: user.birthMonth, day: user.birthDay});
-		 	 var urlSign = sign.toLowerCase();
-		 	 var horoApiUrl = 'http://theastrologer-api.herokuapp.com/api/horoscope/' + urlSign +'/today';
-			request(horoApiUrl, function(error, response, body) {
-				if (!error && response.statusCode == 200) {
-		    		var horoApi = JSON.parse(body);
-		    		horoScore = horoApi.meta.intensity;
-		    		horoScore = horoScore.replace('%', '');
-		    		horoScore = horoScore.split('');
-		    		horoScore.unshift('0.')
-		    		horoScore = horoScore.toString();
-		    		horoScore = horoScore.replace(/,/g,"");
-				} 		
-				//VAR PC = 75%
-				//VAR FL = 0.64
-				// PC = PC.REPLACE ()
-				// VAR FL2 = PARSEFLOAT(PC);
-				// IF(FL2 / 100) > FL) CONsole.log('yes');
-				//PC.REPLACE THEN PARSEFLOAT(PC) 
-					function trackReturn(callback) {
-						if (horoScore < 0.33) {
-							var sadRnd = superSad[Math.floor(Math.random()*superSad.length)];
-							// var sadFrame = 
-							console.log('<iframe src="https://embed.spotify.com/?uri=spotify:track:' + sadRnd + '"' + " " + 'frameborder="0" allowtransparency="true"></iframe>');
-							// callback(sadFrame);
-						} else if (horoScore > 0.33 && horoScore < 0.66) {
-							var mildRnd = mild[Math.floor(Math.random()*mild.length)];
-							// var mildFrame = 
-							console.log('<iframe src="https://embed.spotify.com/?uri=spotify:track:' + mildRnd + '"' + " " + 'frameborder="0" allowtransparency="true"></iframe>');
-							// callback(mildFrame);
-						} else if (horoScore > 0.66 && horoScore < 1) {
-							var happyRnd = superHappy[Math.floor(Math.random()*superHappy.length)];
-							// var happFrame = 
-							console.log('<iframe src="https://embed.spotify.com/?uri=spotify:track:' + happyRnd + '"' + " " + 'frameborder="0" allowtransparency="true"></iframe>');
-							// callback(happFrame);
-						} else {
-							console.log('oops');
-						}	
-						// res.send(trackReturn);
-						// res.render("profile", {iframe: callback});
+	  		trackIds.push(trackObj[i].track.id);
+	  	}
+		spotifyApi.getAudioFeaturesForTracks(trackIds)
+		  .then(function(data) {
+		  	var trackObj = data.body.audio_features;
+		  	for (var i = 0; i < trackObj.length; i++){
+		    valence[i] = trackObj[i].valence;
+		}
+		  }, function(err) {
+		    done(err);
+		  });
+				db.user.findById(req.user.id).then(function(user){
+			 	 var sign = horoscope.getSign({ month: user.birthMonth, day: user.birthDay});
+			 	 var urlSign = sign.toLowerCase();
+			 	 var horoApiUrl = 'http://theastrologer-api.herokuapp.com/api/horoscope/' + urlSign +'/today';
+				request(horoApiUrl, function(error, response, body) {
+					if (!error && response.statusCode == 200) {
+			    		var horoApi = JSON.parse(body);
+			    		horoScore = horoApi.meta.intensity;
+			    		horoScore = horoScore.replace('%', '');
+			    		horoScore = horoScore.split('');
+			    		horoScore.unshift('0.')
+			    		horoScore = horoScore.toString();
+			    		horoScore = horoScore.replace(/,/g,"");
+					} 		
+					//VAR PC = 75%
+					//VAR FL = 0.64
+					// PC = PC.REPLACE ()
+					// VAR FL2 = PARSEFLOAT(PC);
+					// IF(FL2 / 100) > FL) CONsole.log('yes');
+					//PC.REPLACE THEN PARSEFLOAT(PC) 
+					if (horoScore < 0.33) {
+						var sadRnd = superSad[Math.floor(Math.random()*superSad.length)];
+						url = sadRnd;
+						console.log(url);
+					} else if (horoScore > 0.33 && horoScore < 0.66) {
+						var mildRnd = mild[Math.floor(Math.random()*mild.length)];
+						url = mildRnd;
+						console.log(url);
+					} else if (horoScore > 0.66 && horoScore < 1) {
+						var happyRnd = superHappy[Math.floor(Math.random()*superHappy.length)];
+						url = happyRnd;
+						console.log(url);
+					} else {
+						console.log('oops');
 					}	
-					trackReturn();
-		  	});
-		 }).catch(function(error){
-		 	res.status(404).send('Something is Wrong');
-		 })
-		 //console.log('Some information about this playlist', data.body.tracks.items[0].track.id);
-  }, function(err) {
-    console.log('Something went wrong!', err);
-  });
+					res.send(url);
+			  	});
+			 }).catch(function(error){
+			 	res.status(404).send('Something is Wrong');
+			 })
+			 //console.log('Some information about this playlist', data.body.tracks.items[0].track.id);
+	  }, function(err) {
+	    console.log('Something went wrong!', err);
+	  });
+});
+
 
 
 // }
