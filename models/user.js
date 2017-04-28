@@ -1,30 +1,6 @@
 'use strict';
 var bcrypt = require('bcrypt');
 
-// module.exports = function(sequelize, DataTypes) {
-//   var user = sequelize.define('user', {
-//     email: DataTypes.STRING,
-//     userName: DataTypes.STRING,
-//     password: DataTypes.STRING,
-//     firstName: DataTypes.STRING,
-//     lastName: DataTypes.STRING,
-//     birthDay: DataTypes.INTEGER,
-//     birthMonth: DataTypes.INTEGER
-//   }, {
-//     classMethods: {
-//       associate: function(models) {
-//         // associations can be defined here
-//       }
-//     },
-//     instanceMethods: {
-//       validPassword: function(password){
-//         return bcrypt.compareSync(passwordTyped, this.password);
-//       }
-//     }
-//   });
-//   return user;
-// };
-
 module.exports = function(sequelize, DataTypes) {
   var user = sequelize.define('user', {
     email: {
